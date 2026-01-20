@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_edu_course,edu.course,model_edu_course,group_demo,1,1,1,1
+access_edu_subject,edu.subject,model_edu_subject,group_demo,1,1,1,1
+access_edu_classroom,edu.classroom,model_edu_classroom,group_demo,1,1,1,1
+access_edu_session,edu.session,model_edu_session,group_demo,1,1,1,1
+
+access_edu_course_user,edu.course user,model_edu_course,group_user,1,0,0,0
+access_edu_subject_user,edu.subject user,model_edu_subject,group_user,1,0,0,0
+access_edu_classroom_user,edu.classroom user,model_edu_classroom,group_user,1,0,0,0
+access_edu_session_user,edu.session user,model_edu_session,group_user,1,0,1,0
+
+access_edu_course_manager,edu.course manager,model_edu_course,group_manager,1,1,1,1
+access_edu_subject_manager,edu.subject manager,model_edu_subject,group_manager,1,1,1,1
+access_edu_classroom_manager,edu.classroom manager,model_edu_classroom,group_manager,1,1,1,1
+access_edu_session_manager,edu.session manager,model_edu_session,group_manager,1,1,1,1
+

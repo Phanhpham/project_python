@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="rule_edu_session_user_own_or_in_charge" model="ir.rule">
+        <field name="name">User: Only see own or in-charge sessions</field>
+        <field name="model_id" ref="model_edu_session"/>
+        <field name="domain_force">
+            ['|', ('create_uid', '=', user.id), ('instructor_id', '=', user.id)]
+        </field>
+        <field name="groups" eval="[(4, ref('edu_management.group_user'))]"/>
+        <!-- <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/> -->
+    </record>
+
+
+</odoo>

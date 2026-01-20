@@ -1,0 +1,35 @@
+<odoo>
+
+    <menuitem id="menu_root" name="Quản lý đào tạo" sequence="10"/>
+
+    <!-- ACTION -->
+    <record id="action_edu_course" model="ir.actions.act_window">
+        <field name="name">Quản lý khóa học</field>
+        <field name="res_model">edu.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_edu_session" model="ir.actions.act_window">
+        <field name="name">Quản lý lớp học</field>
+        <field name="res_model">edu.session</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <record id="action_edu_classroom" model="ir.actions.act_window">
+        <field name="name">Quản lý phòng học</field>
+        <field name="res_model">edu.classroom</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- MENU CON -->
+    <menuitem id="menu_edu_course" name="Quản lý khóa học" parent="menu_root" action="action_edu_course" sequence="10"/>
+
+    <menuitem id="menu_edu_session" name="Quản lý lớp học" parent="menu_root" action="action_edu_session" sequence="20"/>
+    <menuitem id="menu_edu_classroom" name="Quản lý phòng học" parent="menu_root" action="action_edu_classroom" sequence="30"/>
+
+    <menuitem id="menu_edu_report" name="Báo cáo" parent="menu_root" action="action_edu_session" sequence="40"/>
+
+    <menuitem id="menu_edu_config" name="Cấu hình" parent="menu_root" action="action_edu_session" sequence="50"/>
+</odoo>
