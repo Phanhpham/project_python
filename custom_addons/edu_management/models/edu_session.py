@@ -43,16 +43,14 @@ class EduSession(models.Model):
     # ============================================================
     # TỐI ƯU: GHI ĐÈ HÀM SEARCH ĐỂ ẨN BUỔI HỌC CỦA GV KHÔNG HOẠT ĐỘNG
     # ============================================================
-    @api.model
-    def _search(self, domain, offset=0, limit=None, order=None, access_rights_uid=None):
-        """ Ẩn buổi học nếu giảng viên bị bỏ tích 'is_instructor' """
-        domain += ['|', ('instructor_id', '=', False),
-                   ('instructor_id.is_instructor', '=', True)]
-        return super(EduSession, self)._search(domain, offset, limit, order, access_rights_uid)
+    # @api.model
+    # def _search(self, domain, offset=0, limit=None, order=None, access_rights_uid=None):
+    #     """ Ẩn buổi học nếu giảng viên bị bỏ tích 'is_instructor' """
+    #     domain += ['|', ('instructor_id', '=', False),
+    #                ('instructor_id.is_instructor', '=', True)]
+    #     return super(EduSession, self)._search(domain, offset, limit, order, access_rights_uid)
 
-    # ============================================================
-    # VALIDATIONS (CONSTRAINS) - ĐÃ CẬP NHẬT KIỂM TRA TRÙNG LỊCH PHÒNG
-    # ============================================================
+    # VALIDATIONS  -  KIỂM TRA TRÙNG LỊCH PHÒNG
     @api.constrains('name', 'duration', 'attendee_ids', 'classroom_id', 'start_date', 'end_date')
     def _check_session_constraints(self):
         for record in self:
@@ -88,9 +86,7 @@ class EduSession(models.Model):
                         "trong khoảng thời gian từ %s đến %s."
                     ) % (record.classroom_id.name, first_conflict.name, first_conflict.start_date, first_conflict.end_date))
 
-    # ============================================================
     # COMPUTE METHODS
-    # ============================================================
     @api.depends('attendee_ids')
     def _compute_attendee_count(self):
         for record in self:
@@ -124,9 +120,7 @@ class EduSession(models.Model):
             rec.is_this_week = bool(
                 rec.start_date and week_start <= rec.start_date <= week_end)
 
-    # ============================================================
     # ONCHANGE & CRUD
-    # ============================================================
     @api.onchange('course_id')
     def _onchange_course_id(self):
         if self.course_id and self.course_id.responsible_id:
@@ -156,9 +150,7 @@ class EduSession(models.Model):
                       ('instructor_id.name', operator, name)] + domain
         return self._search(domain, limit=limit, order=order)
 
-    # ============================================================
     # ACTIONS
-    # ============================================================
     def action_confirm(self):
         for record in self:
             if not record.classroom_id or not record.instructor_id:
